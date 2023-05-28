@@ -6,10 +6,9 @@ function Header(props: { tabs: string[]; activeTab: number }) {
     <div className="container mx-auto flex place-content-center ">
       {props.tabs.map((item, i) => {
         return (
-          <Link to={`navigate?tab=${i}`}>
+          <Link to={`navigate?tab=${i}`} key={i}>
             <Tab
               name={item}
-              key={i}
               active={i === props.activeTab ? true : false}
             ></Tab>
           </Link>

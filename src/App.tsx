@@ -5,13 +5,16 @@ import { Item, NewItem } from "./types/ItemType";
 let data = require("./data.json");
 
 function App() {
+  //get queryParams
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const currentTab = queryParams.get("tab");
 
+  //Initialize the tabs
   const tabs = ["income", "outcome", "loan", "investment"];
   const activeTab = currentTab === null ? 0 : parseInt(currentTab);
 
+  // Delete unnecessary data
   const newData = data.data.map((item: Item) => {
     return {
       _id: item._id,
@@ -25,6 +28,7 @@ function App() {
     <div className="container w-fit mx-auto ">
       <Header tabs={tabs} activeTab={activeTab}></Header>
       <List
+        //filter data
         items={newData.filter((item: NewItem) => item.type === tabs[activeTab])}
       ></List>
     </div>
